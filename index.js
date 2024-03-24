@@ -3,6 +3,8 @@ const express = require("express"); // Importa la biblioteca Express para la cre
 const cors = require("cors"); // Importa la biblioteca CORS para permitir solicitudes HTTP entre diferentes dominios.
 const path = require("path"); // Importa el módulo path
 
+require("dotenv").config(); // Solicita las variables de entorno a traves de .env
+
 // componentes "míos" que voy a utilizar
 const HTTPSTATUSCODE = require("./utils/httpStatusCode"); // Importa un módulo personalizado que contiene códigos de estado HTTP.
 const { connectMongo } = require("./utils/db"); // Importa una función personalizada para conectar a la base de datos MongoDB.
@@ -19,7 +21,6 @@ const PORT = process.env.PORT || 3000 /* 3000 */; // Puerto en el que se ejecuta
 connectMongo(); // Llama a la función para conectar a la base de datos MongoDB.
 const app = express(); // Crea una instancia de la aplicación Express.
 
-require("dotenv").config(); // Solicita las variables de entorno a traves de .env
 
 // Middleware para configurar CORS y permitir solicitudes de diferentes dominios.
 app.use((req, res, next) => {
@@ -43,8 +44,8 @@ app.use("/user", userRouter); // Define las rutas para los usuarios y utiliza el
 // Ruta de bienvenida
 app.get("/", (request, response) => {
   response.status(200).json({
-    message: "Welcome to my server", // Mensaje de bienvenida enviado como respuesta.
-    app: "My App", // Nombre de la aplicación enviado como respuesta.
+    message: "Conectado al servidor", // Mensaje de bienvenida enviado como respuesta.
+    app: "BBDD para tienda ficticia", // Nombre de la aplicación enviado como respuesta.
   });
 });
 
